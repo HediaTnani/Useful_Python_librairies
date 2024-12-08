@@ -289,3 +289,500 @@
 | `isinf()` | Test infinite | `np.isinf(array)` | Boolean array |
 | `isnan()` | Test NaN | `np.isnan(array)` | Boolean array |
 | `isneginf()` | Test negative inf | `np.isneginf(array)` | Boolean
+
+# Complete Pandas Series Reference
+
+## Series Creation
+```python
+# Basic creation
+s = pd.Series([1, 2, 3])
+s = pd.Series(data=[1, 2, 3], index=['a', 'b', 'c'])
+s = pd.Series({'a': 1, 'b': 2, 'c': 3})
+s = pd.Series(5, index=['a', 'b', 'c'])  # Constant value
+```
+
+## Basic Attributes
+
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| `values` | Underlying data as array | `s.values` |
+| `index` | Index object | `s.index` |
+| `dtype` | Data type | `s.dtype` |
+| `shape` | Shape of Series | `s.shape` |
+| `size` | Number of elements | `s.size` |
+| `ndim` | Number of dimensions | `s.ndim` |
+| `nbytes` | Memory usage in bytes | `s.nbytes` |
+| `name` | Series name | `s.name` |
+| `empty` | Whether Series is empty | `s.empty` |
+| `hasnans` | Whether has NaN values | `s.hasnans` |
+| `axes` | Return list of axes | `s.axes` |
+| `T` | Transpose | `s.T` |
+
+## Accessing Data
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `at[]` | Access single value by label | `s.at['label']` |
+| `iat[]` | Access single value by position | `s.iat[0]` |
+| `loc[]` | Access values by label | `s.loc['a':'c']` |
+| `iloc[]` | Access values by position | `s.iloc[0:3]` |
+| `items()` | Iterator over (index, value) pairs | `for idx, val in s.items()` |
+| `keys()` | Get index | `s.keys()` |
+| `get()` | Get value with default for missing | `s.get('key', default=0)` |
+| `xs()` | Access single value by label | `s.xs('label')` |
+
+## Information Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `describe()` | Summary statistics | `s.describe()` |
+| `info()` | Series information | `s.info()` |
+| `count()` | Count non-NA/null values | `s.count()` |
+| `value_counts()` | Count unique values | `s.value_counts()` |
+| `nunique()` | Count number of unique values | `s.nunique()` |
+| `unique()` | Get unique values | `s.unique()` |
+| `memory_usage()` | Memory usage in bytes | `s.memory_usage()` |
+| `is_unique` | Check if values are unique | `s.is_unique` |
+| `is_monotonic` | Check if values are monotonic | `s.is_monotonic` |
+| `is_monotonic_increasing` | Check if increasing | `s.is_monotonic_increasing` |
+| `is_monotonic_decreasing` | Check if decreasing | `s.is_monotonic_decreasing` |
+
+## Mathematical Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `abs()` | Absolute values | `s.abs()` |
+| `add()` | Addition | `s.add(other)` |
+| `sub()` | Subtraction | `s.sub(other)` |
+| `mul()` | Multiplication | `s.mul(other)` |
+| `div()` | Division | `s.div(other)` |
+| `truediv()` | True division | `s.truediv(other)` |
+| `floordiv()` | Floor division | `s.floordiv(other)` |
+| `mod()` | Modulo | `s.mod(other)` |
+| `pow()` | Power | `s.pow(other)` |
+| `radd()` | Reverse addition | `s.radd(other)` |
+| `rsub()` | Reverse subtraction | `s.rsub(other)` |
+| `rmul()` | Reverse multiplication | `s.rmul(other)` |
+| `rdiv()` | Reverse division | `s.rdiv(other)` |
+| `round()` | Round values | `s.round(decimals=2)` |
+| `clip()` | Trim values | `s.clip(lower=0, upper=1)` |
+
+## Statistical Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `mean()` | Mean | `s.mean()` |
+| `median()` | Median | `s.median()` |
+| `mode()` | Mode | `s.mode()` |
+| `var()` | Variance | `s.var()` |
+| `std()` | Standard deviation | `s.std()` |
+| `sem()` | Standard error of mean | `s.sem()` |
+| `skew()` | Skewness | `s.skew()` |
+| `kurt()` | Kurtosis | `s.kurt()` |
+| `quantile()` | Quantile | `s.quantile(0.5)` |
+| `min()` | Minimum | `s.min()` |
+| `max()` | Maximum | `s.max()` |
+| `sum()` | Sum | `s.sum()` |
+| `prod()` | Product | `s.prod()` |
+| `compound()` | Compound percentage | `s.compound()` |
+| `cumsum()` | Cumulative sum | `s.cumsum()` |
+| `cumprod()` | Cumulative product | `s.cumprod()` |
+| `cummax()` | Cumulative maximum | `s.cummax()` |
+| `cummin()` | Cumulative minimum | `s.cummin()` |
+| `diff()` | Difference | `s.diff()` |
+| `pct_change()` | Percentage change | `s.pct_change()` |
+| `rank()` | Rank | `s.rank()` |
+| `nlargest()` | n largest values | `s.nlargest(n=3)` |
+| `nsmallest()` | n smallest values | `s.nsmallest(n=3)` |
+
+## Missing Data Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `isna()` | Detect missing values | `s.isna()` |
+| `notna()` | Detect non-missing values | `s.notna()` |
+| `isnull()` | Alias for isna | `s.isnull()` |
+| `notnull()` | Alias for notna | `s.notnull()` |
+| `dropna()` | Drop missing values | `s.dropna()` |
+| `fillna()` | Fill missing values | `s.fillna(0)` |
+| `interpolate()` | Interpolate values | `s.interpolate()` |
+| `bfill()` | Backward fill | `s.bfill()` |
+| `ffill()` | Forward fill | `s.ffill()` |
+| `pad()` | Alias for ffill | `s.pad()` |
+| `backfill()` | Alias for bfill | `s.backfill()` |
+
+## Transformation Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `map()` | Map values using input | `s.map({'a': 1, 'b': 2})` |
+| `apply()` | Apply function | `s.apply(lambda x: x*2)` |
+| `transform()` | Transform using function | `s.transform(lambda x: x+1)` |
+| `replace()` | Replace values | `s.replace(1, 'one')` |
+| `update()` | Modify Series in-place | `s1.update(s2)` |
+| `mask()` | Replace values where condition | `s.mask(s > 0, 999)` |
+| `where()` | Replace values where not condition | `s.where(s > 0, 999)` |
+| `astype()` | Cast to dtype | `s.astype('int64')` |
+| `convert_dtypes()` | Convert to best dtype | `s.convert_dtypes()` |
+| `infer_objects()` | Infer dtype | `s.infer_objects()` |
+| `reindex()` | Conform to new index | `s.reindex(['a', 'b', 'c'])` |
+| `rename()` | Rename Series | `s.rename('new_name')` |
+| `set_axis()` | Set index or columns | `s.set_axis(['a', 'b', 'c'])` |
+
+## Grouping and Window Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `groupby()` | Group Series | `s.groupby(level=0)` |
+| `rolling()` | Rolling window | `s.rolling(window=3).mean()` |
+| `expanding()` | Expanding window | `s.expanding().mean()` |
+| `ewm()` | Exponential weighted window | `s.ewm(span=3).mean()` |
+| `shift()` | Shift index | `s.shift(periods=1)` |
+| `tshift()` | Time shift | `s.tshift(freq='D')` |
+| `first()` | First element of group | `s.groupby(level=0).first()` |
+| `last()` | Last element of group | `s.groupby(level=0).last()` |
+| `nth()` | nth element of group | `s.groupby(level=0).nth(2)` |
+| `resample()` | Resample time-series data | `s.resample('D').mean()` |
+
+## Combining Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `append()` | Append Series | `s1.append(s2)` |
+| `combine()` | Combine Series | `s1.combine(s2, func=max)` |
+| `combine_first()` | Update null elements | `s1.combine_first(s2)` |
+| `align()` | Align Series | `s1.align(s2)` |
+| `compare()` | Compare with other | `s1.compare(s2)` |
+| `equals()` | Test equality | `s1.equals(s2)` |
+
+## String Methods (str accessor)
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `str.lower()` | Lowercase | `s.str.lower()` |
+| `str.upper()` | Uppercase | `s.str.upper()` |
+| `str.len()` | String length | `s.str.len()` |
+| `str.strip()` | Strip whitespace | `s.str.strip()` |
+| `str.split()` | Split string | `s.str.split(',')` |
+| `str.replace()` | Replace substring | `s.str.replace('old', 'new')` |
+| `str.contains()` | Test if contains | `s.str.contains('pattern')` |
+| `str.startswith()` | Test if starts with | `s.str.startswith('prefix')` |
+| `str.endswith()` | Test if ends with | `s.str.endswith('suffix')` |
+| `str.cat()` | Concatenate strings | `s.str.cat(sep=',')` |
+| `str.extract()` | Extract using regex | `s.str.extract('(\d+)')` |
+| `str.find()` | Find substring | `s.str.find('pattern')` |
+| `str.pad()` | Pad strings | `s.str.pad(width=10)` |
+| `str.slice()` | Slice strings | `s.str.slice(0, 3)` |
+
+## Datetime Methods (dt accessor)
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `dt.year` | Extract year | `s.dt.year` |
+| `dt.month` | Extract month | `s.dt.month` |
+| `dt.day` | Extract day | `s.dt.day` |
+| `dt.hour` | Extract hour | `s.dt.hour` |
+| `dt.minute` | Extract minute | `s.dt.minute` |
+| `dt.second` | Extract second | `s.dt.second` |
+| `dt.weekday` | Extract weekday | `s.dt.weekday` |
+| `dt.dayofyear` | Day of year | `s.dt.dayofyear` |
+| `dt.quarter` | Extract quarter | `s.dt.quarter` |
+| `dt.strftime()` | Format datetime | `s.dt.strftime('%Y-%m-%d')` |
+| `dt.tz_localize()` | Localize timezone | `s.dt.tz_localize('UTC')` |
+| `dt.tz_convert()` | Convert timezone | `s.dt.tz_convert('US/Pacific')` |
+
+## Input/Output Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `to_numpy()` | Convert to numpy array | `s.to_numpy()` |
+| `to_list()` | Convert to list | `s.to_list()` |
+| `to_dict()` | Convert to dict | `s.to_dict()` |
+| `to_frame()` | Convert to DataFrame | `s.to_frame()` |
+| `to_string()` | Convert to string | `s.to_string()` |
+| `to_json()` | Convert to JSON | `s.to_json()` |
+| `to_csv()` | Write to CSV | `s.to_csv('file.csv')` |
+| `to_excel()` | Write to Excel | `s.to_excel('file.xlsx')` |
+| `to_pickle()` | Write to pickle | `s.to_pickle('file.pkl')` |
+
+## Utility Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `copy()` | Create copy | `s.copy()` |
+| `pipe()` | Apply func chainable | `s.pipe(func)` |
+| `drop()` | Drop labels | `s.drop(['a', 'b'])` |
+| `droplevel()` | Drop index levels | `s.droplevel(0)` |
+| `reset_index()` | Reset index | `s.reset_index()` |
+| `set_flags()` | Set flags | `s.set_flags(allows_duplicate_labels=False)` |
+| `between()` | Check if between | `s.between(left=0, right=1)` |
+| `sort_values()` | Sort by values | `s.sort_values()` |
+| `sort_index()` | Sort by index | `s.sort_index()` |
+| `reorder_levels()` | Reorder levels | `s.reorder_levels([1, 0])` |
+| `swaplevel()` | Swap levels | `s.swaplevel(0, 1)` |
+
+# More Pandas
+
+# Pandas Functions Reference Table
+
+## Data Creation Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `pd.Series()` | Creates a 1D labeled array | `pd.Series([1, 2, 3], index=['a', 'b', 'c'])` |
+| `pd.DataFrame()` | Creates a 2D labeled data structure | `pd.DataFrame({'A': [1, 2], 'B': [3, 4]})` |
+| `pd.date_range()` | Creates date series | `pd.date_range('20230101', periods=6)` |
+| `pd.Index()` | Creates an index object | `pd.Index([2, 3, 5, 23, 26])` |
+
+## Data Access Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `df.loc[]` | Label-based access | `df.loc['row_label', 'column_label']` |
+| `df.iloc[]` | Integer-based access | `df.iloc[0, 0]` |
+| `df['column']` | Column access | `df['column_name']` |
+| `df.at[]` | Fast label-based scalar accessor | `df.at['row_label', 'column_label']` |
+| `df.iat[]` | Fast integer-based scalar accessor | `df.iat[0, 0]` |
+| `df.head()` | First n rows | `df.head(5)` |
+| `df.tail()` | Last n rows | `df.tail(5)` |
+
+## Lambda Operations
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `apply(lambda)` by row | Apply function to each row | `df.apply(lambda row: row['A'] + row['B'], axis=1)` |
+| `apply(lambda)` by column | Apply function to each column | `df.apply(lambda col: col.max() - col.min(), axis=0)` |
+| Row-wise calculation | Perform operation on each row | `df.apply(lambda x: x.sum(), axis=1)` |
+| Column-wise calculation | Perform operation on each column | `df.apply(lambda x: x.mean(), axis=0)` |
+| Conditional lambda | Apply condition to elements | `df['A'].apply(lambda x: 'High' if x > 5 else 'Low')` |
+| Multiple column lambda | Operation using multiple columns | `df.apply(lambda x: x['A']/x['B'] if x['B']!=0 else 0, axis=1)` |
+| Filter lambda | Filter groups using lambda | `df.groupby('A').filter(lambda x: x['B'].mean() > 30)` |
+
+## Data Manipulation Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `sort_values()` | Sort by values | `df.sort_values('column', ascending=False)` |
+| `sort_index()` | Sort by index | `df.sort_index(ascending=True)` |
+| `rank()` | Compute numerical rank | `df.rank(method='average', axis=0)` |
+| `groupby()` | Group data | `df.groupby('column').mean()` |
+| `merge()` | Merge DataFrames | `pd.merge(df1, df2, on='key')` |
+| `concat()` | Concatenate DataFrames | `pd.concat([df1, df2])` |
+| `drop()` | Drop rows or columns | `df.drop('column', axis=1)` |
+| `rename()` | Rename columns | `df.rename(columns={'old': 'new'})` |
+| `reset_index()` | Reset index | `df.reset_index(drop=True)` |
+| `set_index()` | Set index | `df.set_index('column')` |
+| `swapaxes()` | Swap axes | `df.swapaxes(0,1)` |
+| `T` | Transpose | `df.T` |
+
+## Statistical Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `describe()` | Statistical summary | `df.describe()` |
+| `mean()` | Calculate mean | `df.mean(numeric_only=True)` |
+| `median()` | Calculate median | `df.median()` |
+| `std()` | Calculate standard deviation | `df.std()` |
+| `var()` | Calculate variance | `df.var()` |
+| `mad()` | Mean absolute deviation | `df.mad()` |
+| `corr()` | Calculate correlation | `df.corr()` |
+| `count()` | Count non-null values | `df.count()` |
+| `max()` | Maximum value | `df.max()` |
+| `min()` | Minimum value | `df.min()` |
+| `sum()` | Sum of values | `df.sum()` |
+| `cumsum()` | Cumulative sum | `df.cumsum()` |
+| `cumprod()` | Cumulative product | `df.cumprod()` |
+| `argmax()` | Index of maximum value | `df.argmax()` |
+| `argmin()` | Index of minimum value | `df.argmin()` |
+| `idxmax()` | Returns index label of maximum value | `df.idxmax()` # By column\ndf.idxmax(axis=1) # By row\ndf.idxmax(skipna=False) # Include NaN` |
+| `idxmin()` | Returns index label of minimum value | `df.idxmin()` # By column\ndf.idxmin(skipna=True) # Skip NaN\ndf['col'].idxmin() # For single column` |
+| `argmax()` | Returns integer position of maximum value | `df.argmax() # Position by column\ndf.argmax(axis=1) # Position by row` |
+| `argmin()` | Returns integer position of minimum value | `df.argmin() # Position by column\ns.argmin() # For series` |
+
+## Data Cleaning Functions
+
+### Missing Values
+| Function | Description | Example |
+|----------|-------------|---------|
+| `isnull()` | Check for missing values | `df.isnull()` |
+| `notnull()` | Check for non-missing values | `df.notnull()` |
+| `dropna()` | Drop missing values | `df.dropna(subset=['col'])`\n`df.dropna(how='all')`\n`df.dropna(thresh=2)` |
+| `fillna()` | Fill missing values | `df.fillna(0)`\n`df.fillna(method='ffill')`\n`df.fillna(method='bfill')` |
+| `replace()` | Replace values | `df.replace(old_val, new_val)`\n`df.replace([1,2], np.nan)` |
+| `pd.notnull()` | Check for non-null values | `pd.notnull(df)` |
+| `interpolate()` | Interpolate values | `df.interpolate(method='linear')`\n`df.interpolate(method='pad')` |
+
+### Duplicates
+| Function | Description | Example |
+|----------|-------------|---------|
+| `duplicated()` | Return boolean Series denoting duplicate rows | `df.duplicated()`\n`df.duplicated(subset=['A', 'B'])`\n`df.duplicated(keep='last')` |
+| `drop_duplicates()` | Remove duplicate rows | `df.drop_duplicates()`\n`df.drop_duplicates(subset=['A'])`\n`df.drop_duplicates(keep='last')` |
+
+### Data Type Handling
+| Function | Description | Example |
+|----------|-------------|---------|
+| `astype()` | Convert data type | `df['col'].astype('int64')`\n`df.astype({'col1': 'int32', 'col2': 'float64'})` |
+| `convert_dtypes()` | Convert to best possible dtypes | `df.convert_dtypes()` |
+| `infer_objects()` | Infer better data types | `df.infer_objects()` |
+
+### Value Validation
+| Function | Description | Example |
+|----------|-------------|---------|
+| `isna()` | Detect missing values | `df.isna().sum()`\n`df.isna().any()` |
+| `notna()` | Detect non-missing values | `df.notna().all()` |
+| `between()` | Check if values are between bounds | `df['col'].between(left=0, right=10)` |
+| `clip()` | Trim values at bounds | `df.clip(lower=0, upper=100)` |
+| `round()` | Round values | `df.round(2)` |
+
+## File Operations
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `read_csv()` | Read CSV file | `pd.read_csv('file.csv', sep=',', header=None, names=['A','B'])` |
+| `to_csv()` | Write to CSV | `df.to_csv('file.csv', index=False, na_rep='NULL')` |
+| `read_json()` | Read JSON file | `pd.read_json('file.json')` |
+| `to_json()` | Write to JSON | `df.to_json('file.json')` |
+| `read_excel()` | Read Excel file | `pd.read_excel('file.xlsx')` |
+| `to_excel()` | Write to Excel | `df.to_excel('file.xlsx')` |
+| `read_table()` | Read general delimited file | `pd.read_table('file.txt', sep='\t')` |
+
+## Selection and Filtering Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `filter()` | Filter data | `df.filter(items=['A', 'B'])` |
+| `isin()` | Check for values | `df['A'].isin([1, 2])` |
+| `where()` | Replace values conditionally | `df.where(df > 0, 0)` |
+| `query()` | Query DataFrame | `df.query('A > B')` |
+| `sample()` | Random sample | `df.sample(n=5)` |
+| `nlargest()` | Get n largest values | `df.nlargest(3, 'column')` |
+| `nsmallest()` | Get n smallest values | `df.nsmallest(3, 'column')` |
+| `mask()` | Replace values using mask | `df.mask(df < 0, 0)` |
+| `between()` | Check if values are between | `df['A'].between(left=2, right=5)` |
+
+## Aggregation and Grouping Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `agg()` | Aggregate using functions | `df.groupby('A').agg({'B': 'mean'})` |
+| `transform()` | Transform groups | `df.groupby('A').transform('sum')` |
+| `rolling()` | Rolling window calculations | `df.rolling(window=3).mean()` |
+| `expanding()` | Expanding window calculations | `df.expanding().mean()` |
+| `pivot_table()` | Create pivot table | `df.pivot_table(values='D', index='A')` |
+| `melt()` | Unpivot table | `df.melt(id_vars=['A'])` |
+| `value_counts()` | Count unique values | `df['column'].value_counts()` |
+| `aggregate()` | Multiple function aggregation | `df.groupby('A').aggregate(['min', 'max', 'mean'])` |
+| `resample()` | Resample time-series data | `df.resample('D').mean()` |
+
+## DataFrame Information Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `info()` | DataFrame information | `df.info()` |
+| `dtypes` | Get column data types | `df.dtypes` |
+| `shape` | Get dimensions | `df.shape` |
+| `size` | Get size | `df.size` |
+| `copy()` | Create copy | `df.copy()` |
+| `memory_usage()` | Memory usage | `df.memory_usage(deep=True)` |
+| `nunique()` | Count unique values | `df.nunique()` |
+| `items()` | Iterator over (column, Series) pairs | `for col, series in df.items()` |
+| `equals()` | Test equality with another object | `df1.equals(df2)` |
+| `empty` | True if DataFrame is empty | `df.empty` |
+| `ndim` | Number of dimensions | `df.ndim` |
+| `axes` | List of axes labels | `df.axes` |
+| `select_dtypes()` | Select columns by data type | `df.select_dtypes(include=['number'])` |
+| `get_numeric_data()` | Get numeric columns | `df.get_numeric_data()` |
+| `columns` | Get column labels | `df.columns` |
+| `index` | Get index labels | `df.index` |
+| `values` | Get numpy array of values | `df.values` |
+| `to_numpy()` | Convert to numpy array | `df.to_numpy()` |
+
+## String Operations (str accessor)
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `str.lower()` | Convert to lowercase | `df['col'].str.lower()` |
+| `str.upper()` | Convert to uppercase | `df['col'].str.upper()` |
+| `str.len()` | Get string length | `df['col'].str.len()` |
+| `str.strip()` | Remove whitespace | `df['col'].str.strip()` |
+| `str.split()` | Split string | `df['col'].str.split(',')` |
+| `str.replace()` | Replace pattern | `df['col'].str.replace('old', 'new')` |
+| `str.contains()` | Check if string contains pattern | `df['col'].str.contains('pattern')` |
+| `str.startswith()` | Check string start | `df['col'].str.startswith('prefix')` |
+| `str.endswith()` | Check string end | `df['col'].str.endswith('suffix')` |
+| `str.cat()` | Concatenate strings | `df['col'].str.cat(sep=', ')` |
+| `str.extract()` | Extract pattern matches | `df['col'].str.extract('(\d+)')` |
+| `str.get()` | Get element at position | `df['col'].str.get(0)` |
+
+## Time Series Operations (dt accessor)
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `dt.year` | Get year | `df['date'].dt.year` |
+| `dt.month` | Get month | `df['date'].dt.month` |
+| `dt.day` | Get day | `df['date'].dt.day` |
+| `dt.hour` | Get hour | `df['date'].dt.hour` |
+| `dt.minute` | Get minute | `df['date'].dt.minute` |
+| `dt.second` | Get second | `df['date'].dt.second` |
+| `dt.weekday` | Get day of week | `df['date'].dt.weekday` |
+| `dt.dayofyear` | Get day of year | `df['date'].dt.dayofyear` |
+| `dt.quarter` | Get quarter | `df['date'].dt.quarter` |
+| `dt.strftime()` | Format datetime | `df['date'].dt.strftime('%Y-%m-%d')` |
+
+## Data Reshaping
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `pivot()` | Reshape data | `df.pivot(index='A', columns='B', values='C')` |
+| `pivot_table()` | Create pivot table | `df.pivot_table(values='D', index=['A', 'B'], aggfunc='sum')` |
+| `melt()` | Unpivot DataFrame | `df.melt(id_vars=['A'], value_vars=['B'])` |
+| `stack()` | Stack the prescribed level(s) | `df.stack()` |
+| `unstack()` | Unstack the prescribed level(s) | `df.unstack()` |
+| `wide_to_long()` | Wide format to long format | `pd.wide_to_long(df, stubnames='val', i=['id'], j='time')` |
+
+## Window Operations
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `rolling()` | Rolling window calculations | `df.rolling(window=3).mean()` |
+| `expanding()` | Expanding window calculations | `df.expanding().sum()` |
+| `ewm()` | Exponential weighted calculations | `df.ewm(span=3).mean()` |
+| `shift()` | Shift index | `df.shift(periods=1)` |
+| `diff()` | Compute difference | `df.diff()` |
+| `pct_change()` | Compute percentage change | `df.pct_change()` |
+
+## Set Operations
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `append()` | Append rows | `df1.append(df2)` |
+| `combine_first()` | Update null elements | `df1.combine_first(df2)` |
+| `update()` | Modify in place | `df1.update(df2)` |
+| `assign()` | Assign new columns | `df.assign(D=lambda x: x['A'] * 10)` |
+| `merge_ordered()` | Merge with optional filling | `pd.merge_ordered(df1, df2)` |
+| `merge_asof()` | Merge on nearest key | `pd.merge_asof(df1, df2, on='date')` |
+| `eval()` | Evaluate string expression | `df.eval('A + B')` |
+| `query()` | Query DataFrame | `df.query('A > B')` |
+
+## Computation Methods
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `abs()` | Absolute values | `df.abs()` |
+| `all()` | Check if all elements are True | `df.all()` |
+| `any()` | Check if any elements are True | `df.any()` |
+| `clip()` | Trim values | `df.clip(lower=0, upper=1)` |
+| `prod()` | Product of values | `df.prod()` |
+| `compound()` | Compound percentage | `df.compound()` |
+| `cummax()` | Cumulative maximum | `df.cummax()` |
+| `cummin()` | Cumulative minimum | `df.cummin()` |
+| `cumprod()` | Cumulative product | `df.cumprod()` |
+| `cumsum()` | Cumulative sum | `df.cumsum()` |
+| `dot()` | Matrix multiplication | `df.dot(other_df)` |
+| `mode()` | Mode of values | `df.mode()` |
+| `quantile()` | Compute quantiles | `df.quantile([0.25, 0.75])` |
+| `rank()` | Compute numerical rank | `df.rank()` |
+| `round()` | Round values | `df.round(2)` |
+| `sem()` | Standard error of mean | `df.sem()` |
+| `skew()` | Sample skewness | `df.skew()` |
+| `kurt()` | Kurtosis | `df.kurt()` |
